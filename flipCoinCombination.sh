@@ -23,6 +23,7 @@ winCombo=""
 
 for (( i=0;i<$flips;i++ )) 
 do 
+#combo variable is to store the combination string 
 combo=""
 	for (( j=0;j<$coins;j++ )) #it will Create the combination 
 	do
@@ -54,6 +55,19 @@ done
 echo "The Combinations are ${!TossStore[@]}"
 echo "The number of times each combination occured are ${TossStore[@]}"
 
+#Sorting the Occurrences
+echo "Sorted results in Ascending order:"
+for k in "${!TossStore[@]}"
+do
+  echo $k ' - ' ${TossStore["$k"]}
+done | sort -n -k3
+
+#Calculating the percentage of win
+winPercentage=`echo "$(( $max * 100 / $flips ))"`
+
 echo "The winning Combination is $winCombo" 
-echo "It occurred $max times"
-	
+echo "It occurred $max times ie $winPercentage percent"
+
+
+
+
